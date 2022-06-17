@@ -7,6 +7,6 @@
 
 import UIKit
 
-extension UIView {
+public extension UIView {
     static var nib: UINib { .init(nibName: identifier, bundle: nil) }
 }
