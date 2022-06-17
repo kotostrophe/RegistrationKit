@@ -7,9 +7,9 @@
 
 import UIKit
 
-typealias UICollectionViewReusableCell = UICollectionViewCell & UIReusable
+public typealias UICollectionViewReusableCell = UICollectionViewCell & UIReusable
 
-extension UICollectionReusableView {
+public extension UICollectionReusableView {
     enum Kind {
         case header, footer, custom(String)
 

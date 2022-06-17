@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol UIIdentifiable where Self: UIResponder {
+public protocol UIIdentifiable where Self: UIResponder {
     static var identifier: String { get }
 }
 
-extension UIIdentifiable {
+public extension UIIdentifiable {
     static var identifier: String {
         let className = String(describing: self)
         guard className.contains("<") else { return className }

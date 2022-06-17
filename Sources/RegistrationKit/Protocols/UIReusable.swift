@@ -5,4 +5,4 @@
 //  Created by Тарас Коцур on 18.06.2022.
 //
 
-protocol UIReusable {}
+public protocol UIReusable {}

@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - Register methods
 
-extension UITableView {
+public extension UITableView {
     
     // MARK: - Cell
 
