@@ -11,39 +11,61 @@ import UIKit
 
 extension UICollectionView {
     
-    func registerSupplementary<SupplementaryView: UICollectionReusableView>(
-        _ supplementaryView: SupplementaryView.Type,
-        as kind: UICollectionReusableView.Kind
+    // MARK: - Cell
+    
+    func register<Cell: UICollectionViewCell>(
+        _ cell: Cell.Type,
+        with identifier: String = Cell.identifier
     ) {
-        registerSupplementary(supplementaryView, as: kind.name)
+        register(cell, forCellWithReuseIdentifier: identifier)
     }
-
-    func registerSupplementary<SupplementaryView: UICollectionReusableView>(
+    
+    func register<Cell: UICollectionViewCell, UIReusable>(
+        _ cell: Cell.Type,
+        with identifier: String = Cell.identifier
+    ) {
+        register(cell.nib, forCellWithReuseIdentifier: identifier)
+    }
+    
+    func register<SupplementaryView: UICollectionReusableView>(
         _ supplementaryView: SupplementaryView.Type,
-        as kind: String
+        as kind: UICollectionReusableView.Kind,
+        with identifier: String = SupplementaryView.identifier
+    ) {
+        register(supplementaryView, as: kind.name, with: identifier)
+    }
+    
+    // MARK: - Supplementary
+
+    func register<SupplementaryView: UICollectionReusableView>(
+        _ supplementaryView: SupplementaryView.Type,
+        as kind: String,
+        with identifier: String = SupplementaryView.identifier
     ) {
         register(
             supplementaryView,
             forSupplementaryViewOfKind: kind,
-            withReuseIdentifier: supplementaryView.identifier
+            withReuseIdentifier: identifier
         )
     }
-
-    func registerSupplementary<SupplementaryView: UICollectionReusableView & UIReusable>(
+    
+    func register<SupplementaryView: UICollectionReusableView, UIReusable>(
         _ supplementaryView: SupplementaryView.Type,
-        as kind: UICollectionReusableView.Kind
+        as kind: UICollectionReusableView.Kind,
+        with identifier: String = SupplementaryView.identifier
     ) {
-        registerSupplementary(supplementaryView, as: kind.name)
+        register(supplementaryView, as: kind.name, with: identifier)
     }
 
-    func registerSupplementary<SupplementaryView: UICollectionReusableView & UIReusable>(
+    func register<SupplementaryView: UICollectionReusableView, UIReusable>(
         _ supplementaryView: SupplementaryView.Type,
-        as kind: String
+        as kind: String,
+        with identifier: String = SupplementaryView.identifier
     ) {
         register(
             supplementaryView.nib,
             forSupplementaryViewOfKind: kind,
-            withReuseIdentifier: supplementaryView.identifier
+            withReuseIdentifier: identifier
         )
     }
 }
