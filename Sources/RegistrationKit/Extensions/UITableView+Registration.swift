@@ -13,25 +13,29 @@ extension UITableView {
     
     // MARK: - Cell
 
-    func register<Cell: UITableViewCell>(_ cell: Cell.Type) {
+    func register<Cell>(
+        _ cell: Cell.Type
+    ) where Cell: UITableViewCell {
         register(cell, forCellReuseIdentifier: cell.identifier)
     }
 
-    func register<Cell: UITableViewCell, UIReusable>(_ cell: Cell.Type) {
+    func register<Cell>(
+        _ cell: Cell.Type
+    ) where Cell: UITableViewCell, Cell: UIReusable {
         register(cell.nib, forCellReuseIdentifier: cell.identifier)
     }
     
     // MARK: - Supplementary
 
-    func register<SupplementaryView: UITableViewHeaderFooterView>(
+    func register<SupplementaryView>(
         _ supplementaryView: SupplementaryView.Type
-    ) {
+    ) where SupplementaryView: UITableViewHeaderFooterView {
         register(supplementaryView, forHeaderFooterViewReuseIdentifier: supplementaryView.identifier)
     }
 
-    func register<SupplementaryView: UITableViewHeaderFooterView, UIReusable>(
+    func register<SupplementaryView>(
         _ supplementaryView: SupplementaryView.Type
-    ) {
+    ) where SupplementaryView: UITableViewHeaderFooterView, SupplementaryView: UIReusable {
         register(supplementaryView.nib, forHeaderFooterViewReuseIdentifier: supplementaryView.identifier)
     }
 }

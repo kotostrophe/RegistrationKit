@@ -13,20 +13,20 @@ extension UITableView {
     
     // MARK: - Cell
 
-    func dequeue<Cell: UITableViewCell>(
+    func dequeue<Cell>(
         _ cell: Cell.Type,
         with identifier: String = Cell.identifier
-    ) -> Cell {
+    ) -> Cell where Cell: UITableViewCell {
         guard let cell = dequeueReusableCell(withIdentifier: identifier) as? Cell
         else { fatalError("Failed to dequeue \(Cell.self)") }
         return cell
     }
 
-    func dequeue<Cell: UITableViewCell>(
+    func dequeue<Cell>(
         _ cell: Cell.Type,
-        with identifier: String = Cell.identifier
+        with identifier: String = Cell.identifier,
         for indexPath: IndexPath
-    ) -> Cell {
+    ) -> Cell where Cell: UITableViewCell {
         guard let cell = dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? Cell
         else { fatalError("Failed to dequeue \(Cell.self)") }
         return cell
@@ -34,10 +34,10 @@ extension UITableView {
     
     // MARK: - Supplementary
 
-    func dequeue<SupplementaryView: UITableViewHeaderFooterView>(
+    func dequeue<SupplementaryView>(
         _ supplementaryView: SupplementaryView.Type,
-        with identifier: String = Cell.identifier
-    ) -> SupplementaryView {
+        with identifier: String = SupplementaryView.identifier
+    ) -> SupplementaryView where SupplementaryView: UITableViewHeaderFooterView {
         guard let cell = dequeueReusableHeaderFooterView( withIdentifier: identifier) as? SupplementaryView
         else { fatalError("Failed to dequeue \(SupplementaryView.self)") }
         return cell
