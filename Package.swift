@@ -5,17 +5,11 @@ import PackageDescription
 
 let package = Package(
     name: "RegistrationKit",
-    platforms: [
-        .iOS(.v9),
-    ],
+    platforms: [.iOS(.v9)],
     products: [
-        .library(
-            name: "RegistrationKit",
-            targets: ["RegistrationKit"]),
+        .library(name: "RegistrationKit", targets: ["RegistrationKit"]),
     ],
     targets: [
-        .target(
-            name: "RegistrationKit",
-            dependencies: [])
+        .target(name: "RegistrationKit", path: "Sources/RegistrationKit"),
     ]
 )
