@@ -5,9 +5,6 @@
 //  Created by Тарас Коцур on 18.06.2022.
 //
 
-import Foundation
-
-#if canImport(UIKit)
 import UIKit
 
 protocol UIIdentifiable where Self: UIResponder {
@@ -21,5 +18,3 @@ extension UIIdentifiable {
         return className.components(separatedBy: "<").first ?? className
     }
 }
-#endif
-
