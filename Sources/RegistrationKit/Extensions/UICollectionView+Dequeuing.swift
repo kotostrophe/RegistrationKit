@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - Dequeue methods
 
-extension UICollectionView {
+public extension UICollectionView {
     
     // MARK: - Cell
 
