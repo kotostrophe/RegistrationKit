@@ -10,25 +10,35 @@ import UIKit
 // MARK: - Dequeue methods
 
 extension UITableView {
+    
+    // MARK: - Cell
 
-    func dequeueCell<Cell: UITableViewCell>(_ cell: Cell.Type) -> Cell {
-        guard let cell = dequeueReusableCell(withIdentifier: cell.identifier) as? Cell
+    func dequeue<Cell: UITableViewCell>(
+        _ cell: Cell.Type,
+        with identifier: String = Cell.identifier
+    ) -> Cell {
+        guard let cell = dequeueReusableCell(withIdentifier: identifier) as? Cell
         else { fatalError("Failed to dequeue \(Cell.self)") }
         return cell
     }
 
-    func dequeueCell<Cell: UITableViewCell>(_ cell: Cell.Type, for indexPath: IndexPath) -> Cell {
-        guard let cell = dequeueReusableCell(withIdentifier: cell.identifier, for: indexPath) as? Cell
+    func dequeue<Cell: UITableViewCell>(
+        _ cell: Cell.Type,
+        with identifier: String = Cell.identifier
+        for indexPath: IndexPath
+    ) -> Cell {
+        guard let cell = dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? Cell
         else { fatalError("Failed to dequeue \(Cell.self)") }
         return cell
     }
+    
+    // MARK: - Supplementary
 
-    func dequeueSupplementary<SupplementaryView: UITableViewHeaderFooterView>(
-        _ supplementaryView: SupplementaryView.Type
+    func dequeue<SupplementaryView: UITableViewHeaderFooterView>(
+        _ supplementaryView: SupplementaryView.Type,
+        with identifier: String = Cell.identifier
     ) -> SupplementaryView {
-        guard let cell = dequeueReusableHeaderFooterView(
-            withIdentifier: supplementaryView.identifier
-        ) as? SupplementaryView
+        guard let cell = dequeueReusableHeaderFooterView( withIdentifier: identifier) as? SupplementaryView
         else { fatalError("Failed to dequeue \(SupplementaryView.self)") }
         return cell
     }
