@@ -10,22 +10,26 @@ import UIKit
 // MARK: - Register methods
 
 extension UITableView {
+    
+    // MARK: - Cell
 
-    func registerCell<Cell: UITableViewCell>(_ cell: Cell.Type) {
+    func register<Cell: UITableViewCell>(_ cell: Cell.Type) {
         register(cell, forCellReuseIdentifier: cell.identifier)
     }
 
-    func registerCell<Cell: UITableViewCell & UIReusable>(_ cell: Cell.Type) {
+    func register<Cell: UITableViewCell, UIReusable>(_ cell: Cell.Type) {
         register(cell.nib, forCellReuseIdentifier: cell.identifier)
     }
+    
+    // MARK: - Supplementary
 
-    func registerSupplementary<SupplementaryView: UITableViewHeaderFooterView>(
+    func register<SupplementaryView: UITableViewHeaderFooterView>(
         _ supplementaryView: SupplementaryView.Type
     ) {
         register(supplementaryView, forHeaderFooterViewReuseIdentifier: supplementaryView.identifier)
     }
 
-    func registerSupplementary<SupplementaryView: UITableViewHeaderFooterView & UIReusable>(
+    func register<SupplementaryView: UITableViewHeaderFooterView, UIReusable>(
         _ supplementaryView: SupplementaryView.Type
     ) {
         register(supplementaryView.nib, forHeaderFooterViewReuseIdentifier: supplementaryView.identifier)

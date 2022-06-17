@@ -10,29 +10,39 @@ import UIKit
 // MARK: - Dequeue methods
 
 extension UICollectionView {
+    
+    // MARK: - Cell
 
-    func dequeueCell<Cell: UICollectionViewCell>(_ cell: Cell.Type, for indexPath: IndexPath) -> Cell {
-        guard let cell = dequeueReusableCell(withReuseIdentifier: cell.identifier, for: indexPath) as? Cell
+    func dequeue<Cell: UICollectionViewCell>(
+        _ cell: Cell.Type,
+        with identifier: String = Cell.identifier,
+        for indexPath: IndexPath
+    ) -> Cell {
+        guard let cell = dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? Cell
         else { fatalError("Failed to dequeue \(Cell.self)") }
         return cell
     }
-
-    func dequeueSupplementary<SupplementaryView: UICollectionReusableView>(
+    
+    // MARK: - Supplementary
+    
+    func dequeue<SupplementaryView: UICollectionReusableView>(
         _ supplementaryView: SupplementaryView.Type,
         for indexPath: IndexPath,
-        as kind: UICollectionReusableView.Kind
+        as kind: UICollectionReusableView.Kind,
+        with identifier: String = SupplementaryView.identifier
     ) -> SupplementaryView {
-        dequeueSupplementary(supplementaryView, for: indexPath, as: kind.name)
+        dequeue(supplementaryView, for: indexPath, as: kind.name, with: identifier)
     }
 
-    func dequeueSupplementary<SupplementaryView: UICollectionReusableView>(
+    func dequeue<SupplementaryView: UICollectionReusableView>(
         _ supplementaryView: SupplementaryView.Type,
         for indexPath: IndexPath,
-        as kind: String
+        as kind: String,
+        with identifier: String = SupplementaryView.identifier
     ) -> SupplementaryView {
         guard let supplementaryView = dequeueReusableSupplementaryView(
             ofKind: kind,
-            withReuseIdentifier: supplementaryView.identifier,
+            withReuseIdentifier: identifier,
             for: indexPath
         ) as? SupplementaryView
         else { fatalError("Failed to dequeue \(SupplementaryView.self)") }
