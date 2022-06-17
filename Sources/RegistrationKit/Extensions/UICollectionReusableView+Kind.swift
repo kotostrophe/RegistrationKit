@@ -5,7 +5,6 @@
 //  Created by Тарас Коцур on 18.06.2022.
 //
 
-#if canImport(UIKit)
 import UIKit
 
 typealias UICollectionViewReusableCell = UICollectionViewCell & UIReusable
@@ -31,5 +30,3 @@ extension UICollectionReusableView {
         }
     }
 }
-
-#endif
